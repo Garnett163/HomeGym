@@ -24,3 +24,16 @@ const product: PartialProduct = {
 };
 
 console.log(product);
+
+function merge<T, K>(obj1: T, obj2: K): T & K {
+  return { ...obj1, ...obj2 };
+}
+const res = merge({ a: 5 }, { b: { a: 10, mes: 'test' } });
+
+enum Colors {
+  white = '#fff',
+  black = '#000',
+}
+
+type AvailableColors = keyof typeof Colors;
+const a: AvailableColors = 'black';

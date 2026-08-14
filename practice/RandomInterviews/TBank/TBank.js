@@ -46,21 +46,6 @@ emitter
   .off('event', cb2) // отписка коллбэка cb2 от событие 'event'
   .emit('event'); // cb1
 
-console.log(1);
-Promise.resolve(3).then(console.log); // выведет 3
-
-setTimeout(function () {
-  console.log(5);
-});
-
-function foo1() {
-  console.log('foo1');
-  return Promise.resolve().then(foo1); // бесконечный цикл + блокировка интерфейса
-  setTimeout(foo1); // бесконечный цикл + интерфейс не заблочен
-}
-
-foo1();
-
 function maxPossibleSum(arr) {
   const negatives = arr.filter(item => item < 0).length;
 
@@ -72,10 +57,12 @@ function maxPossibleSum(arr) {
   const sumSorted = sorted.reduce((acc, value) => acc + value, 0);
   const sumArray = arr.reduce((acc, value) => acc + Math.abs(value), 0);
 
+  console.log(sumSorted);
+  console.log(sumArray);
+
   return sumArray - sumSorted * 2;
 }
 console.log(maxPossibleSum([-2, 1, -4, 5])); // 6
-console.log(maxPossibleSum());
 
 const arr = [5, 2, 9, 1, 7];
 

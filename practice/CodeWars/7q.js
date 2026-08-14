@@ -95,3 +95,77 @@ function getMissingElementReduce(superImportantArray) {
 }
 
 console.log(getMissingElementReduce([0, 5, 1, 3, 2, 9, 7, 6, 4]));
+
+function isIsogram(str) {
+  const map = new Map();
+  let index = 0;
+
+  for (const item of str) {
+    if (map.has(item.toLowerCase())) {
+      return false;
+    } else {
+      map.set(item.toLowerCase(), index);
+      index++;
+    }
+  }
+
+  return true;
+}
+console.log(isIsogram('moOse'));
+
+function reverseWords(str) {
+  return str
+    .split(' ')
+    .map(i => i.split('').reverse().join(''))
+    .join(' ');
+}
+console.log(reverseWords('The quick brown fox jumps over the lazy dog.'));
+
+function divideAndConquer(array) {
+  let sumNum = 0;
+  let sumString = 0;
+
+  for (let item of array) {
+    if (typeof item === 'number') {
+      sumNum += item;
+    } else {
+      sumString += Number(item);
+    }
+  }
+  return sumNum - sumString;
+}
+console.log(divideAndConquer([9, 3, '4', '5'])); // 3
+
+function isRubyComing(list) {
+  const filterRubyDevs = list.filter(i => i.language === 'Ruby');
+  return filterRubyDevs.length > 0 ? true : false;
+}
+console.log(
+  isRubyComing([
+    { firstName: 'Emma', lastName: 'Z.', country: 'Netherlands', continent: 'Europe', age: 29, language: 'Ruby' },
+    { firstName: 'Piotr', lastName: 'B.', country: 'Poland', continent: 'Europe', age: 128, language: 'Javascript' },
+    { firstName: 'Jayden', lastName: 'P.', country: 'Jamaica', continent: 'Americas', age: 42, language: 'JavaScript' },
+  ]),
+);
+
+function decreasingInputs(...args) {
+  return Math.round(args.reduce((acc, value, index) => acc + value / (index + 1), 0));
+}
+console.log(decreasingInputs(170, 190, 369, -308, -168, 332, -234, -439, 57, -111, 397, 143, -427, 429, 185));
+
+function validParentheses(parenStr) {
+  let countLeft = 0;
+  let countRight = 0;
+
+  for (const char of parenStr) {
+    if (countRight > countLeft) {
+      break;
+    } else if (char === '(') {
+      countLeft++;
+    } else {
+      countRight++;
+    }
+  }
+  return countLeft === countRight;
+}
+console.log(validParentheses('())(()')); // false
