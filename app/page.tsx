@@ -1,10 +1,10 @@
-'use client';
+import { PageContainer } from '@/shared/ui';
+import { Header } from '@/widgets/index';
 
 export default function Home() {
   return (
-    <main>
-      <h1>Hello Next.js</h1>
-      <br />
-    </main>
+    <PageContainer>
+      <Header />
+    </PageContainer>
   );
 }

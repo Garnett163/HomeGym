@@ -1,0 +1,31 @@
+.header {
+  background: var(--bg-secondary);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1250px;
+  margin: 0 auto;
+  padding: 15px 30px;
+}
+
+.logo {
+  color: var(--accent-color);
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.userActions {
+  display: flex;
+  gap: 12px;
+}
