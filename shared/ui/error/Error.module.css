@@ -1,0 +1,10 @@
+.error {
+  display: block;
+  min-height: 12px;
+  overflow: hidden;
+  color: var(--accent-color);
+  font-size: 12px;
+  line-height: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

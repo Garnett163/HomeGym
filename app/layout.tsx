@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { ThemeProvider } from '@/features/theme/model/ThemeProvider';
+import { StoreProvider } from './providers/StoreProvider';
+import { THEME_INIT_SCRIPT } from '@/features/theme';
 
 export const metadata: Metadata = {
   title: 'HomeGym — персональный тренажёрный зал',
@@ -14,8 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ru" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script id="theme-initializer" dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <StoreProvider>{children}</StoreProvider>
       </body>
     </html>
   );

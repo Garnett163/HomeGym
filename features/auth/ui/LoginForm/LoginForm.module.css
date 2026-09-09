@@ -5,8 +5,21 @@
 }
 
 .title {
+  padding-bottom: 14px;
   font-size: 28px;
   font-weight: 600;
   color: var(--text-primary);
   text-align: center;
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }

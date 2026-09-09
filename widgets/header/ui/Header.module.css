@@ -29,3 +29,16 @@
   display: flex;
   gap: 12px;
 }
+
+.sunIcon,
+.moonIcon {
+  display: none;
+}
+
+:global(html[data-theme='dark']) .sunIcon {
+  display: block;
+}
+
+:global(html[data-theme='light']) .moonIcon {
+  display: block;
+}
