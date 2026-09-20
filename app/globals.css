@@ -9,6 +9,7 @@
 [data-theme='dark'] {
   --bg-primary: linear-gradient(135deg, #09090b 0%, #111827 55%, #17102b 100%);
   --bg-secondary: #18181b;
+  --bg-third: #2d2d2d;
 
   --text-primary: #f8fafc;
   --text-secondary: #a1a1aa;
@@ -22,6 +23,7 @@
 [data-theme='light'] {
   --bg-primary: #f4f7fb;
   --bg-secondary: #ffffff;
+  --bg-third: #e2e8f0;
 
   --text-primary: #111827;
   --text-secondary: #64748b;
@@ -42,4 +44,9 @@
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
 }

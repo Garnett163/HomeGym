@@ -1,0 +1,35 @@
+.interviewList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.interviewItem {
+  padding: 16px;
+  background-color: var(--bg-third);
+  border: 1px solid var(--text-secondary);
+  border-radius: 12px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.interviewItem:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.interviewQuestion {
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.4;
+}
+
+.interviewAnswer {
+  padding-left: 24px;
+  line-height: 1.6;
+  border-left: 3px solid #6c63ff;
+}

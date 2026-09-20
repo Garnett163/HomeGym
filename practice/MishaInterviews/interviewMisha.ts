@@ -37,3 +37,16 @@ enum Colors {
 
 type AvailableColors = keyof typeof Colors;
 const a: AvailableColors = 'black';
+
+function getObjectProperty<T, K extends keyof T>(target: T, key: K): T[K] {
+  return target[key];
+}
+const user = {
+  name: 'test',
+  age: 10,
+};
+
+const age = getObjectProperty(user, 'age'); // number
+const getName = getObjectProperty(user, 'name'); // string
+
+// getObjectProperty(user, 'wrong'); // Ошибка TypeScript

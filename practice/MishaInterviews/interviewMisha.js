@@ -270,6 +270,94 @@ const objValues = {
 
 function getTreeValues(tree) {
   const result = [];
+
+  result.push(tree.value);
+
+  if (tree.children) {
+    for (const child of tree.children) {
+      result.push(...getTreeValues(child));
+    }
+  }
+
+  return result;
 }
 
 console.log(getTreeValues(objValues)); // [1,2,3,4,5,6]
+
+const objGetStr = {
+  a: {
+    b: {
+      c: 'd',
+    },
+    e: 'f',
+  },
+};
+
+function get(obj, path) {
+  const keys = path.split('.');
+  let currentObj = obj;
+
+  for (const key of keys) {
+    if (currentObj[key]) {
+      currentObj = currentObj?.[key];
+    } else {
+      return undefined;
+    }
+  }
+  return currentObj;
+}
+console.log(get(objGetStr, 'a.b')); // { c : 'd' }
+console.log(get(objGetStr, 'a.x.c')); // undefined
+console.log(get(objGetStr, 'a.b.c')); // 'd'
+console.log(get(objGetStr, 'a.e')); // 'f'
+
+function sortEvenNumbers(arr) {
+  const sortedArr = arr.filter(i => i % 2 === 0).sort((a, b) => a - b);
+  console.log(sortedArr);
+  let index = 0;
+
+  return arr.map(i => (i % 2 === 0 ? sortedArr[index++] : i));
+}
+console.log(sortEvenNumbers([3, 8, 2, 1, 5, 6, 4, 9, 7])); // [3, 2, 4, 1, 5, 6, 8, 9, 7]
+
+function findSum(array, target) {
+  const map = new Map();
+  const result = [];
+
+  for (let i = 0; i < array.length; i++) {
+    const diff = target - array[i];
+
+    if (map.has(array[i])) {
+      result.push(map.get(array[i]), array[i]);
+    }
+
+    map.set(diff, array[i]);
+  }
+  console.log(map);
+  return result;
+}
+console.log(findSum([1, 2, 3, 5, 1, 8], 9)); // [1, 8]
+
+const objValuesTwo = {
+  value: 1,
+  children: [
+    { value: 2, children: [{ value: 3 }] },
+    { value: 4, children: [{ value: 5 }, { value: 6 }] },
+  ],
+};
+
+function logValues(tree) {
+  const result = [];
+
+  console.log(tree.value);
+
+  if (tree.children) {
+    for (const key of tree.children) {
+      logValues(key);
+    }
+  }
+
+  // return result;
+}
+
+console.log(logValues(objValuesTwo));

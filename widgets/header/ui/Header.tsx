@@ -2,16 +2,16 @@
 
 import styles from './Header.module.css';
 import { useAppDispatch } from '@/shared/store/hooks';
-import { useToggle } from '@/shared/lib/hooks/useToogle';
+import { useModalToggle } from '@/shared/lib/hooks/useModalToogle';
 import { toggleTheme } from '@/features/theme/model/themeSlice';
 import Link from 'next/link';
-import { Button, Modal } from '@/shared/ui';
+import { Button, ButtonLink, Modal } from '@/shared/ui';
 import { SunLightIcon, MoonIcon, UserProfileIcon } from '@/shared/ui/icons';
 import { LoginForm } from '@/features/index';
 
 export function Header() {
   const dispatch = useAppDispatch();
-  const { value: isLoginOpen, open: openLogin, close: closeLogin } = useToggle();
+  const { value: isLoginOpen, open: openLogin, close: closeLogin } = useModalToggle();
 
   const handleToggleTheme = () => {
     dispatch(toggleTheme());
@@ -25,14 +25,17 @@ export function Header() {
             HomeGym
           </Link>
           <div className={styles.userActions}>
-            <Button onClick={openLogin} aria-label="Login">
-              <UserProfileIcon width={24} height={24} />
-              Login
-            </Button>
-            <Button className={styles.themeToggle} onClick={handleToggleTheme} icon aria-label="Toggle color theme">
-              <SunLightIcon className={styles.sunIcon} width={24} height={24} />
-              <MoonIcon className={styles.moonIcon} width={24} height={24} />
-            </Button>
+            <ButtonLink href="/interview">Interview</ButtonLink>
+            <div className={styles.controls}>
+              <Button onClick={openLogin} aria-label="Login">
+                <UserProfileIcon width={24} height={24} />
+                Login
+              </Button>
+              <Button className={styles.themeToggle} onClick={handleToggleTheme} icon aria-label="Toggle color theme">
+                <SunLightIcon className={styles.sunIcon} width={24} height={24} />
+                <MoonIcon className={styles.moonIcon} width={24} height={24} />
+              </Button>
+            </div>
           </div>
         </div>
       </header>

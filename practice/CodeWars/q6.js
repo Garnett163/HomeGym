@@ -79,3 +79,237 @@ function towerBuilder(nFloors) {
   return result;
 }
 console.log(towerBuilder(3));
+
+function twoSum(nums, target) {
+  const map = new Map();
+
+  for (let i = 0; i < nums.length; i++) {
+    const diff = target - nums[i];
+
+    if (map.has(nums[i])) {
+      return [map.get(nums[i]), i];
+    }
+
+    map.set(diff, i);
+  }
+
+  console.log(map);
+  return [];
+}
+
+console.log(twoSum([2, 11, 15, 7], 9)); // [0, 3]
+
+function uniqueInOrder(iterable) {
+  const result = [];
+
+  let index = 0;
+
+  for (const key of iterable) {
+    if (key === result[index - 1]) {
+      continue;
+    }
+    result.push(key);
+    index++;
+  }
+
+  return result;
+}
+
+console.log(uniqueInOrder('AAAABBBCCDAABBB')); // ['A', 'B', 'C', 'D', 'A', 'B']
+
+function fizzBuzzCustom(stringOne = 'Fizz', stringTwo = 'Buzz', numOne = 3, numTwo = 5) {
+  let result = [];
+
+  for (let i = 1; i <= 100; i++) {
+    if (i % numOne === 0 && i % numTwo === 0) {
+      result.push(stringOne + stringTwo);
+    } else if (i % numOne === 0) {
+      result.push(stringOne);
+    } else if (i % numTwo === 0) {
+      result.push(stringTwo);
+    } else {
+      result.push(i);
+    }
+  }
+
+  return result;
+}
+
+console.log(fizzBuzzCustom());
+console.log(fizzBuzzCustom('Foo', 'Bar', 2, 3));
+
+function once(func) {
+  let flag = false;
+  return function (...args) {
+    if (!flag) {
+      flag = true;
+      return func(...args);
+    }
+  };
+}
+// console.log(once());
+logOnce = once(console.log);
+logOnce('foo'); // -> "foo"
+logOnce('bar'); // -> no effect
+
+function scoreThrows(radii) {
+  if (!radii.length) return 0;
+  let result = 0;
+  let bonusFlag = true;
+
+  for (let rad of radii) {
+    if (rad > 10) {
+      bonusFlag = false;
+      continue;
+    } else if (rad <= 10 && rad >= 5) {
+      result += 5;
+      bonusFlag = false;
+    } else if (rad < 5) {
+      result += 10;
+    }
+  }
+  if (bonusFlag) {
+    result += 100;
+  }
+  return result;
+}
+
+console.log(scoreThrows([0, 5, 10, 10.5, 4.5])); // 15
+
+Array.prototype.reduce = function (process, initial) {
+  const hasInitialValue = initial !== undefined;
+
+  let accumulator = hasInitialValue ? initial : this[0];
+
+  for (let i = hasInitialValue ? 0 : 1; i < this.length; i++) {
+    accumulator = process(accumulator, this[i], i, this);
+  }
+
+  return accumulator;
+};
+
+function NumberFromEveryPossibleSumOfTwoDigits(sums) {
+  if (sums.length === 0) {
+    return 0;
+  }
+
+  let digitsCount = 1;
+
+  while ((digitsCount * (digitsCount - 1)) / 2 < sums.length) {
+    digitsCount++;
+  }
+
+  // Особый случай: исходное число состояло из двух цифр.
+  if (digitsCount === 2) {
+    const sum = sums[0];
+
+    // Ищем любые две цифры, которые дают эту сумму.
+    for (let a = 1; a <= 9; a++) {
+      const b = sum - a;
+
+      if (b >= 0 && b <= 9) {
+        return Num33ber(`${a}${b}`);
+      }
+    }
+  }
+
+  // 2. Первые элементы массива имеют такой вид:
+  //
+  // a+b, a+c, a+d, ...
+  //
+  // Нам нужны:
+  // a+b
+  // a+c
+  // b+c
+
+  const ab = sums[0];
+  const ac = sums[1];
+
+  // После всех сумм с "a" начинается группа с "b".
+  // Поэтому b+c находится на индексе digitsCount - 1.
+  const bc = sums[digitsCount - 1];
+
+  // 3. Восстанавливаем первую цифру.
+  const a = (ab + ac - bc) / 2;
+
+  // 4. Зная a, можем восстановить остальные цифры.
+  const digits = [a];
+
+  // Первые digitsCount - 1 элементов:
+  // a+b, a+c, a+d, a+e...
+  for (let i = 0; i < digitsCount - 1; i++) {
+    digits.push(sums[i] - a);
+  }
+
+  // 5. Склеиваем цифры в число.
+  return Number(digits.join(''));
+}
+console.log(NumberFromEveryPossibleSumOfTwoDigits([6, 7, 11])); // 156
+
+function createMessage(...args) {
+  let words = [...args];
+
+  function next(word) {
+    if (word) {
+      words = [...words, word];
+      return next;
+    } else {
+      return words.join(' ');
+    }
+  }
+
+  return next;
+}
+console.log(createMessage('Hello')('World!')('how')('are')('you?')());
+createMessage('Hello')('World!');
+
+function millipedeOfWords(words) {
+  for (let startIndex = 0; startIndex < words.length; startIndex++) {
+    const usedIndexes = [startIndex];
+
+    if (search(startIndex, usedIndexes)) {
+      return true;
+    }
+  }
+  function search(currentIndex, usedIndexes) {
+    if (usedIndexes.length === words.length) {
+      return true;
+    }
+    const currentWord = words[currentIndex];
+
+    for (let nextIndex = 0; nextIndex < words.length; nextIndex++) {
+      let alreadyUsed = false;
+
+      for (const usedIndex of usedIndexes) {
+        if (nextIndex === usedIndex) {
+          alreadyUsed = true;
+          break;
+        }
+      }
+
+      const nextWord = words[nextIndex];
+
+      if (!alreadyUsed && currentWord.at(-1) === nextWord[0]) {
+        usedIndexes.push(nextIndex);
+
+        if (search(nextIndex, usedIndexes)) {
+          return true;
+        }
+        usedIndexes.pop();
+      }
+    }
+
+    return false;
+  }
+
+  for (let startIndex = 0; startIndex < words.length; startIndex++) {
+    const usedIndexes = [startIndex];
+
+    if (search(startIndex, usedIndexes)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+console.log(millipedeOfWords(['excavate', 'endure', 'desire', 'screen', 'theater', 'excess', 'night'])); // true

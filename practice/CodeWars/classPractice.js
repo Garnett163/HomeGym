@@ -50,3 +50,11 @@ console.log(new Class());
 console.log(Class.getNumber());
 console.log(Class.getNumber());
 console.log(Class.getNumber());
+
+class Ball {
+  constructor(ballType = 'regular') {
+    this.ballType = ballType;
+  }
+}
+console.log(new Ball());
+console.log(new Ball('super'));

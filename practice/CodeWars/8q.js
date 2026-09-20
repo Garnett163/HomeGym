@@ -159,3 +159,169 @@ function sumArrayReduce(numbers) {
   return numbers.reduce((acc, value) => acc + value, 0);
 }
 console.log(sumArrayReduce([1, 5.2, 4, 0, -1]));
+
+function isPalindrome(x) {
+  let startChar = 0;
+  let endChar = x.length - 1;
+
+  while (startChar < endChar) {
+    if (x[startChar].toLowerCase() !== x[endChar].toLowerCase()) {
+      return false;
+    } else {
+      startChar++;
+      endChar--;
+    }
+  }
+  return true;
+}
+
+console.log(isPalindrome('madam ? ada'));
+
+function switchItUp(number) {
+  switch (number) {
+    case 0:
+      return 'Zero';
+    case 1:
+      return 'One';
+    case 2:
+      return 'Two';
+    case 3:
+      return 'Three';
+    case 4:
+      return 'Four';
+    case 5:
+      return 'Five';
+    case 6:
+      return 'Six';
+    case 7:
+      return 'Seven';
+    case 8:
+      return 'Eight';
+    case 9:
+      return 'Nine';
+    default:
+      return 'Not Number';
+  }
+}
+
+console.log(switchItUp(2));
+
+function humanYearsCatYearsDogYears(humanYears) {
+  let catYears = 0;
+  let dogYears = 0;
+
+  for (let i = 1; i <= humanYears; i++) {
+    if (i === 1) {
+      dogYears += 15;
+      catYears += 15;
+    } else if (i === 2) {
+      dogYears += 9;
+      catYears += 9;
+    } else {
+      dogYears += 5;
+      catYears += 4;
+    }
+  }
+
+  return [humanYears, catYears, dogYears];
+}
+console.log(humanYearsCatYearsDogYears(10)); // [2, 24, 24]
+
+function expressionMatter(a, b, c) {
+  return Math.max(a + b + c, a * b * c, (a + b) * c, a * (b + c), a * b + c, a + b * c);
+}
+
+console.log(expressionMatter(2, 1, 2), 6);
+
+String.prototype.toAlternatingCase = function () {
+  let result = '';
+
+  for (const key of this) {
+    if (key === key.toLowerCase()) {
+      result += key.toUpperCase();
+    } else {
+      result += key.toLowerCase();
+    }
+  }
+
+  return result;
+};
+
+function findAverage(array) {
+  if (array.length === 0) return 0;
+  const sum = array.reduce((acc, val) => acc + val, 0);
+  return sum / array.length;
+}
+
+console.log(findAverage([1, 2, 3])); // 2
+
+function enough(cap, on, wait) {
+  const calc = wait - (cap - on);
+  return calc <= 0 ? 0 : calc;
+}
+console.log(enough(100, 33, 66));
+
+function firstNonConsecutive(arr) {
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] + 1 === arr[i + 1]) {
+      continue;
+    } else {
+      return arr[i + 1];
+    }
+  }
+  return null;
+}
+console.log(firstNonConsecutive([1, 2, 3, 4, 6, 7, 8])); // 6
+
+function checkForFactor(base, factor) {
+  return base % factor === 0 ? true : false;
+}
+console.log(checkForFactor(10, 2)); // true
+
+function findMultiples(integer, limit) {
+  const result = [];
+  let newValue = integer;
+
+  while (newValue <= limit) {
+    result.push(newValue);
+    newValue += integer;
+  }
+
+  return result;
+}
+console.log(findMultiples(2, 6)); // [2, 4, 6]
+
+function twoHighest(arr) {
+  if (!arr.length) return [];
+  const setArr = new Set(arr);
+  const sortedArr = [...setArr].sort((a, b) => b - a);
+
+  return sortedArr.slice(0, 2);
+}
+console.log(twoHighest([4, 10, 10, 9]));
+
+function between(a, b) {
+  let result = [a];
+  let start = a;
+
+  while (start < b) {
+    const nextElem = start + 1;
+    result.push(nextElem);
+    start = nextElem;
+  }
+  return result;
+}
+console.log(between(1, 4)); // [1, 2, 3, 4]
+
+function pipeFix(numbers) {
+  let result = [];
+  let startNum = numbers[0];
+  let endNum = numbers.length - 1;
+
+  for (let i = startNum; i <= numbers[endNum]; i++) {
+    result.push(i);
+  }
+
+  return result;
+}
+console.log(pipeFix([1, 2, 3, 4, 12]));

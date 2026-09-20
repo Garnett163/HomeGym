@@ -169,3 +169,86 @@ function validParentheses(parenStr) {
   return countLeft === countRight;
 }
 console.log(validParentheses('())(()')); // false
+
+Array.prototype.map = function (callback) {
+  const result = [];
+
+  for (let i = 0; i < this.length; i++) {
+    const mappedValue = callback(this[i], i, this);
+    result.push(mappedValue);
+  }
+
+  return result;
+};
+
+function findTheMiddleElement(triplet) {
+  const sortedArr = [...triplet].sort((a, b) => a - b);
+  const middle = sortedArr[Math.floor(sortedArr.length / 2)];
+  return triplet.findIndex(i => i === middle);
+}
+console.log(findTheMiddleElement([2, 3, 1])); // 0
+
+function getCount(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+  let count = 0;
+
+  for (const char of str) {
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(getCount('abracadabra')); // 5
+
+function realNumbers(n) {
+  const remainder = n % 30;
+
+  return Math.floor(n / 30) * 8 + [1, 7, 11, 13, 17, 19, 23, 29].filter(num => num <= remainder).length;
+}
+console.log(realNumbers(5));
+
+function computerToPhone(numbers) {
+  let result = '';
+
+  const computerNums = '1234567890';
+  const phoneNums = '7894561230';
+
+  for (const num of numbers) {
+    const findIndex = computerNums.indexOf(num);
+    result += phoneNums[findIndex];
+  }
+
+  return result;
+}
+console.log(computerToPhone('0789456123'));
+
+function allNonConsecutive(arr) {
+  const result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] - arr[i - 1] > 1) {
+      result.push({ i: i, n: arr[i] });
+    }
+  }
+
+  return result;
+}
+console.log(allNonConsecutive([1, 2, 3, 4, 6, 7, 8, 15, 16])); // [ {i: 4, n:6},  {i: 7, n:15}]
+
+function calculateYears(principal, interest, tax, desired) {
+  let years = 0;
+  if (principal === desired) {
+    return years;
+  }
+  let income = principal;
+
+  while (income < desired) {
+    let incomeWithProc = income * interest;
+    let clearIncomeYear = incomeWithProc - incomeWithProc * tax;
+    income += clearIncomeYear;
+    years++;
+  }
+  return years;
+}
+console.log(calculateYears(1000, 0.05, 0.18, 1100));
