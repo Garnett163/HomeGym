@@ -264,52 +264,63 @@ console.log(createMessage('Hello')('World!')('how')('are')('you?')());
 createMessage('Hello')('World!');
 
 function millipedeOfWords(words) {
-  for (let startIndex = 0; startIndex < words.length; startIndex++) {
-    const usedIndexes = [startIndex];
-
-    if (search(startIndex, usedIndexes)) {
-      return true;
-    }
-  }
-  function search(currentIndex, usedIndexes) {
-    if (usedIndexes.length === words.length) {
+  function search(currentIndex, used) {
+    if (used.size === words.length) {
       return true;
     }
     const currentWord = words[currentIndex];
+    for (let i = 0; i < words.length; i++) {
+      const nextWord = words[i];
 
-    for (let nextIndex = 0; nextIndex < words.length; nextIndex++) {
-      let alreadyUsed = false;
-
-      for (const usedIndex of usedIndexes) {
-        if (nextIndex === usedIndex) {
-          alreadyUsed = true;
-          break;
-        }
-      }
-
-      const nextWord = words[nextIndex];
-
-      if (!alreadyUsed && currentWord.at(-1) === nextWord[0]) {
-        usedIndexes.push(nextIndex);
-
-        if (search(nextIndex, usedIndexes)) {
+      if (!used.has(i) && currentWord.at(-1) === nextWord[0]) {
+        used.set(i, true);
+        if (search(i, used)) {
           return true;
         }
-        usedIndexes.pop();
+        used.delete(i);
       }
     }
-
     return false;
   }
-
-  for (let startIndex = 0; startIndex < words.length; startIndex++) {
-    const usedIndexes = [startIndex];
-
-    if (search(startIndex, usedIndexes)) {
+  for (let i = 0; i < words.length; i++) {
+    const used = new Map();
+    used.set(i, true);
+    if (search(i, used)) {
       return true;
     }
   }
-
   return false;
 }
+
 console.log(millipedeOfWords(['excavate', 'endure', 'desire', 'screen', 'theater', 'excess', 'night'])); // true
+
+function countSmileys(arr) {
+  const eyes = [':', ';'];
+  const noses = ['-', '~'];
+  const mouths = [')', 'D'];
+
+  let count = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length === 2) {
+      const hasEyes = eyes.includes(arr[i][0]);
+      const hasMouth = mouths.includes(arr[i][1]);
+      if (hasEyes && hasMouth) {
+        count++;
+      }
+    }
+
+    if (arr[i].length === 3) {
+      const hasEyes = eyes.includes(arr[i][0]);
+      const hasNoses = noses.includes(arr[i][1]);
+      const hasMouth = mouths.includes(arr[i][2]);
+      if (hasEyes && hasMouth && hasNoses) {
+        count++;
+      }
+    }
+  }
+
+  return count;
+}
+
+console.log(countSmileys([':)', ';(', ';}', ':-D']));

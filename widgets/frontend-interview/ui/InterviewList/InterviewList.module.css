@@ -31,5 +31,6 @@
 .interviewAnswer {
   padding-left: 24px;
   line-height: 1.6;
+  white-space: pre-line;
   border-left: 3px solid #6c63ff;
 }

@@ -252,3 +252,13 @@ function calculateYears(principal, interest, tax, desired) {
   return years;
 }
 console.log(calculateYears(1000, 0.05, 0.18, 1100));
+
+function catsAndShelves(start, finish) {
+  let jumps = 0;
+
+  const distance = finish - start;
+  jumps = Math.floor(distance / 3) + (distance % 3);
+
+  return jumps;
+}
+console.log(catsAndShelves(2, 4)); // 2
