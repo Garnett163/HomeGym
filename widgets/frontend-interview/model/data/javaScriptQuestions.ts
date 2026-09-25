@@ -168,7 +168,7 @@ export const javaScriptQuestions = [
     id: 25,
     question: 'Оптимизация в целом',
     answer: `Оптимизация загрузки JS
-Code Splitting — разбиваем bundle на части.
+Code Splitting — разбиваем bundle на части - динамический import()
 Lazy Loading — загружаем код только когда он понадобился: import(), React.lazy().
 Tree Shaking — сборщик удаляет неиспользуемый код.
 Минификация JS/CSS.

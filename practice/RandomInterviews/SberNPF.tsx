@@ -8,39 +8,46 @@ import React, { useEffect, PropsWithChildren, FC, useState } from 'react';
  * Задача - провести ревью, найти все артефакты, разобраться с багом, оптимизировать
  */
 
-interface IUser {
+type IUser = {
   name: string;
-}
+};
 
-interface IOrder {
+type IOrder = {
   id: string;
   amount: number;
+};
+
+async function getUser(): Promise<IUser> {
+  const response = await fetch('/v1/get-user-profile');
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  return response.json();
+}
+
+async function getOrders(): Promise<IOrder[]> {
+  const response = await fetch('/v1/get-orders');
+
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+
+  return response.json();
+
+  const orders: IOrder[] = await response.json();
+
+  return orders.map(order => ({
+    ...order,
+    id: crypto.randomUUID(),
+  }));
 }
 
 const ProfilePage: FC<PropsWithChildren> = ({ children }) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [orders, setOrders] = useState<IOrder[]>([]);
   const [loading, setLoading] = useState(true);
-
-  async function getUser(): Promise<IUser> {
-    const response = await fetch('/v1/get-user-profile');
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    return response.json();
-  }
-
-  async function getOrders(): Promise<IOrder[]> {
-    const response = await fetch('/v1/get-orders');
-
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-
-    return response.json();
-  }
 
   useEffect(() => {
     Promise.all([getUser(), getOrders()])
@@ -58,11 +65,21 @@ const ProfilePage: FC<PropsWithChildren> = ({ children }) => {
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setUser(prev => (prev ? { ...prev, name: value } : prev));
+    setUser(prev => ({ ...prev, name: value }));
   };
 
-  const handleSave = () => {
-    fetch('/v1/save-profile', { method: 'POST', body: JSON.stringify(user) }).then(data => alert('Сохранено'));
+  const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    fetch('/v1/save-profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then(() => alert('Сохранено'))
+      .catch(() => alert('Не удалось сохранить'));
   };
 
   return (
@@ -81,7 +98,6 @@ const ProfilePage: FC<PropsWithChildren> = ({ children }) => {
           <OrderList orders={orders} />
         </>
       )}
-
       {children}
     </div>
   );
@@ -93,7 +109,7 @@ interface IOrderListProps {
 
 function OrderList({ orders }: IOrderListProps) {
   return (
-    <div>
+    <section>
       <h2>Заказы</h2>
       <p>Тут отобразятся ваши заказы</p>
       <ul>
@@ -105,6 +121,8 @@ function OrderList({ orders }: IOrderListProps) {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
+
+export default React.memo(OrderList);

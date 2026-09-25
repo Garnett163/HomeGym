@@ -34,14 +34,7 @@ RTK Query — часть Redux Toolkit для работы с server state/API. 
   },
   {
     id: 3,
-    question: 'Zustand',
-    answer: `Основной поток Zustand: UI → action → set() → store → подписанные компоненты
-В отличие от Redux, Zustand не требует reducers, actions objects и dispatch — actions обычно являются обычными функциями внутри store.
-— set() — обновляет состояние.
-— get() — позволяет получить актуальное состояние внутри action.
-— middleware — расширяют поведение store, например persist и devtools.
-— persist — позволяет сохранять состояние, например в localStorage.
-— devtools — интеграция с Redux DevTools.
-    `,
+    question: '',
+    answer: ``,
   },
 ];
