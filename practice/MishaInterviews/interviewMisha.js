@@ -349,15 +349,16 @@ const objValuesTwo = {
 function logValues(tree) {
   const result = [];
 
-  console.log(tree.value);
+  // console.log(tree.value);
+  result.push(tree.value);
 
   if (tree.children) {
     for (const key of tree.children) {
-      logValues(key);
+      result.push(...logValues(key));
     }
   }
 
-  // return result;
+  return result;
 }
 
 console.log(logValues(objValuesTwo));

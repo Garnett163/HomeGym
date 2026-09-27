@@ -32,9 +32,9 @@ RTK Query — часть Redux Toolkit для работы с server state/API. 
 — devtools — интеграция с Redux DevTools.
     `,
   },
-  {
-    id: 3,
-    question: '',
-    answer: ``,
-  },
+  // {
+  //   id: 3,
+  //   question: '',
+  //   answer: ``,
+  // },
 ];

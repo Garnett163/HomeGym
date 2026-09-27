@@ -39,6 +39,7 @@ type AvailableColors = keyof typeof Colors;
 const a: AvailableColors = 'black';
 
 function getObjectProperty<T, K extends keyof T>(target: T, key: K): T[K] {
+  // K должен быть одним из ключей объекта T
   return target[key];
 }
 const user = {
@@ -50,3 +51,11 @@ const age = getObjectProperty(user, 'age'); // number
 const getName = getObjectProperty(user, 'name'); // string
 
 // getObjectProperty(user, 'wrong'); // Ошибка TypeScript
+
+const getLength = <T extends { length: number }>(data: T) => {
+  return data.length;
+};
+
+getLength([1, 2, 3]); // ok
+getLength({ length: 777 }); // ok
+getLength({ key: 1 }); // error
