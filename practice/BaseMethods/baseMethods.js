@@ -125,3 +125,28 @@ console.log(
     0,
   ),
 );
+
+function deepCloneObj(obj) {
+  const map = Array.isArray(obj) ? [] : {};
+
+  for (const key in obj) {
+    if (typeof obj[key] !== 'object' || obj[key] === null) {
+      map[key] = obj[key];
+    } else {
+      map[key] = deepCloneObj(obj[key]);
+    }
+  }
+  return map;
+}
+
+const cloneObj = {
+  a: 1,
+  b: {
+    c: 2,
+    d: 3,
+    e: {
+      z: 8,
+    },
+  },
+};
+console.log(deepCloneObj(cloneObj));

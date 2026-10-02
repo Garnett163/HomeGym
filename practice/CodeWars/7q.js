@@ -262,3 +262,17 @@ function catsAndShelves(start, finish) {
   return jumps;
 }
 console.log(catsAndShelves(2, 4)); // 2
+
+Object.defineProperty(Array.prototype, 'numberOfOccurrences', {
+  value: function numberOfOccurrences(element) {
+    let result = 0;
+
+    for (let i = 0; i < this.length; i++) {
+      const curr = this[i];
+      if (curr === element) {
+        result++;
+      }
+    }
+    return result;
+  },
+});

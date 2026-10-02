@@ -1,15 +1,3 @@
-/*
-
-Оплата за проживание в отеле
-
-// Необходимо написать функцию расчета стоимости проживания посетителя в отеле
-// Функция может принимать 2 аргумента
-// 1. Количество ночей проживания в отеле (обязательный параметр)
-// 2. Дата заселения (необязательный параметр). Если значение не указано, то отсчет ведется от текущего дня
-// Стоимость проживания в будние дни (с понедельника по пятницу) стоит 1500 руб.
-// Стоимость проживания в выходные дни (суббота, воскресенье) стоит 2200 руб.
-*/
-
 const prices = {
   weekday: 1500,
   holiday: 2200,
@@ -19,7 +7,7 @@ function bookingCalculate(days, date = new Date()) {
   let curDate = date;
   let price = 0;
 
-  for (i = 0; i < nights; i++) {
+  for (i = 0; i < days; i++) {
     const dayNum = curDate.getDay();
 
     if (dayNum === 6 || dayNum === 0) {
@@ -58,3 +46,58 @@ function groupByType(arr) {
 }
 
 console.log(groupByType(arr));
+
+const data = [
+  { id: 1, age: 20, name: 'Иван', country: 'Russia' },
+  { id: 2, age: 20, name: 'Дмитрий', country: 'USA' },
+  { id: 3, age: 20, name: 'Алексей', country: 'Russia' },
+  { id: 4, age: 20, name: 'Александр', country: 'USA' },
+  { id: 5, age: 20, name: 'Иван', country: 'Russia' },
+];
+
+const groupCountries = data => {
+  const map = {};
+
+  for (let i = 0; i < data.length; i++) {
+    const curr = data[i];
+
+    if (!map[curr.country]) {
+      map[curr.country] = {};
+    }
+
+    const { id, ...withoutId } = curr;
+
+    map[curr.country][curr.id] = withoutId;
+  }
+  return map;
+};
+
+console.log(groupCountries(data));
+
+const players = [
+  { id: 2, squad: 1 },
+  { id: 3, squad: 1 },
+  { id: 4, squad: null },
+  { id: 5, squad: 2 },
+  { id: 6, squad: 1 },
+  { id: 7, squad: 2 },
+];
+
+const groupPlayersBySquad = players => {
+  const playersWithSquad = [];
+  const playersWithoutSquad = [];
+
+  for (const player of players) {
+    if (player.squad !== null) {
+      playersWithSquad.push(player);
+    } else {
+      playersWithoutSquad.push(player);
+    }
+  }
+
+  return [playersWithSquad, playersWithoutSquad];
+};
+
+const [playersWithSquad, playersWithoutSquad] = groupPlayersBySquad(players);
+
+console.log(playersWithSquad, playersWithoutSquad);

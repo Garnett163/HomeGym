@@ -52,10 +52,10 @@ const getName = getObjectProperty(user, 'name'); // string
 
 // getObjectProperty(user, 'wrong'); // Ошибка TypeScript
 
-const getLength = <T extends { length: number }>(data: T) => {
-  return data.length;
-};
+// const getLength = <T extends { length: number }>(data: T) => {
+//   return data.length;
+// };
 
-getLength([1, 2, 3]); // ok
-getLength({ length: 777 }); // ok
-getLength({ key: 1 }); // error
+// getLength([1, 2, 3]); // ok
+// getLength({ length: 777 }); // ok
+// getLength({ key: 1 }); // error
