@@ -64,8 +64,7 @@ const ProfilePage: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setUser(prev => ({ ...prev, name: value }));
+    setUser(prev => ({ ...prev, name: e.target.value }));
   };
 
   const handleSave = (e: React.FormEvent<HTMLFormElement>) => {

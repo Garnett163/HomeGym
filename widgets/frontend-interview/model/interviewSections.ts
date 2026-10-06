@@ -4,6 +4,7 @@ import { javaScriptQuestions } from './data/javaScriptQuestions';
 import { typeScriptQuestions } from './data/typeScriptQuestions';
 import { reactQuestions } from './data/reactQuestions';
 import { stateManagersQuestions } from './data/stateManagersQuestions';
+import { softwareArchitectureAndDesign } from './data/softwareArchitectureAndDesign';
 import { nextJsQuestions } from './data/nextJsQuestions';
 import { vueQuestions } from './data/vueQuestions';
 
@@ -37,6 +38,11 @@ export const interviewSections = [
     id: 'stateManagers',
     title: 'State managers',
     questions: stateManagersQuestions,
+  },
+  {
+    id: 'softwareArchitectureAndDesign',
+    title: 'Architecture and Design',
+    questions: softwareArchitectureAndDesign,
   },
   {
     id: 'nextJsQuestions',
