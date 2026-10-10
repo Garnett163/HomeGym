@@ -1,0 +1,20 @@
+.ball {
+  position: absolute;
+  bottom: 28px;
+  left: calc(50% - 28px);
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, #ffdd9b 0%, #fb923c 28%, #ea580c 65%, #9a3412 100%);
+  box-shadow: inset -5px -7px 12px rgb(87 28 5 / 25%);
+}
+
+.floor {
+  position: absolute;
+  right: 0;
+  bottom: 27px;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--text-secondary), transparent);
+  opacity: 0.35;
+}

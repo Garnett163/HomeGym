@@ -41,6 +41,6 @@ function incrementString(strng) {
   return words + nums;
 }
 // console.log(incrementString('1'));
-console.log(incrementString('foobar'));
-console.log(incrementString('foobar123')); // "foobar001"
+console.log(incrementString('foobar')); // "foobar1"
+console.log(incrementString('foobar123')); // "foobar124"
 console.log(incrementString('foobar999')); // "foobar1000"
