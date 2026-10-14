@@ -97,4 +97,10 @@ export const htmlAndCssQuestions = [
     - content-box свойства width и height включают исключительно контент, и не включают padding и border.
     - border-box свойства width и height включают контент, padding и border, но не включают внешний отступы, то есть margin`,
   },
+  {
+    id: 13,
+    question: 'FCP/TTI',
+    answer: `FCP (First Contentful Paint) — время появления первого контента, и TTI (Time to Interactive) — время до полной интерактивности страницы. 
+    Google Lighthouse / Chrome DevTools`,
+  },
 ];
