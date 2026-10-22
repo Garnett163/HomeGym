@@ -14,7 +14,7 @@ type InterviewSideNavigationProps = {
 };
 
 export function InterviewSideNavigation({ items }: InterviewSideNavigationProps) {
-  const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '');
+  const [activeId, setActiveId] = useState<string>('');
 
   const handleClick = (id: string) => {
     const element = document.getElementById(id);
@@ -28,17 +28,20 @@ export function InterviewSideNavigation({ items }: InterviewSideNavigationProps)
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = items.map(item => document.getElementById(item.id));
-      const scrollPosition = window.scrollY + 100;
+      let nextActiveId = items[0]?.id ?? '';
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const section = sections[i];
-        if (section && section.offsetTop <= scrollPosition) {
-          setActiveId(items[i].id);
-          break;
+      for (const item of items) {
+        const section = document.getElementById(item.id);
+
+        if (section && section.getBoundingClientRect().top <= 100) {
+          nextActiveId = item.id;
         }
       }
+
+      setActiveId(nextActiveId);
     };
+
+    handleScroll();
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
