@@ -7,6 +7,8 @@ export const stateManagersQuestions = [
 — useSelector — читает данные из store и подписывает компонент на изменения.
 — useDispatch — получает функцию dispatch для отправки actions.
 
+useSelector - подписывает компонент на результат selector. После dispatch Redux вызывает selector снова, и React-Redux сравнивает новый результат с предыдущим. По умолчанию используется сравнение по ссылке ===. Если результат изменился — компонент ререндерится.
+
 Основной поток Redux:
 UI → dispatch(action) → middleware → reducer → store → UI (Flux - однонаправленный поток данных)
 — Action — объект, описывающий произошедшее событие.

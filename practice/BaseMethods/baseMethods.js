@@ -44,6 +44,22 @@ function memoize(fn, resolver) {
   };
 }
 
+function memoizeAsync(callback, timeout) {
+  let cache;
+  let initialTime;
+
+  return async function () {
+    const isNotExpired = initialTime + timeout >= Date.now();
+
+    if (!cache || !isNotExpired) {
+      cache = await callback();
+      initialTime = Date.now();
+    }
+
+    return cache;
+  };
+}
+
 async function simpleFetch() {
   try {
     const response = await fetch('https://example.com', {

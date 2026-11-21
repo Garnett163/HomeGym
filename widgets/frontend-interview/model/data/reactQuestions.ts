@@ -105,11 +105,16 @@ Update queue — React ставит updates в очередь и обрабат�
   },
   {
     id: 15,
+    question: 'Синтентические события',
+    answer: `SyntheticEvent — это кроссбраузерная обёртка React над нативным DOM-событием. Она предоставляет единый API вроде preventDefault, stopPropagation, target, currentTarget. React также использует систему делегирования событий, а оригинальное DOM-событие при необходимости доступно через event.nativeEvent`,
+  },
+  {
+    id: 16,
     question: 'Portals',
     answer: `Способ вынести какой то элемент вне его текущей иерархии. Нужно - чтобы модалка не зависела от CSS-ограничений родительских контейнеров. Я могу отрендерить её, например, непосредственно в body, избежав проблем с overflow и z-index.`,
   },
   {
-    id: 16,
+    id: 17,
     question: 'React-router-dom',
     answer: `- useNavigate() - для навигации - navigate("/profile")
     - useParams() - Получение динамических параметров URL
@@ -119,7 +124,7 @@ Update queue — React ставит updates в очередь и обрабат�
     - useNavigation() - Состояние текущей навигации (idle, loading, submitting) в Data Router`,
   },
   {
-    id: 17,
+    id: 18,
     question: 'React 18/19',
     answer: `React 18
     — Automatic Batching — React автоматически группирует несколько setState в один ререндер, в том числе внутри Promise, setTimeout и нативных обработчиков событий.
@@ -127,7 +132,7 @@ Update queue — React ставит updates в очередь и обрабат�
     — useId — генерирует стабильный уникальный идентификатор, согласованный между сервером и клиентом; используется преимущественно для accessibility и не предназначен для key.
     — useTransition — позволяет запускать менее приоритетные обновления через [isPending, startTransition] = useTransition() и отслеживать состояние их выполнения через isPending.
     — useDeferredValue — позволяет отложить обновление части UI относительно актуального значения; полезен, когда нет доступа к setter, например значение приходит через props или custom hook.
-    — Suspense(был в реакте 16 уже) — позволяет показывать fallback, пока дочерняя часть дерева приостановлена, например при загрузке lazy-компонента или данных через Suspense-совместимый источник.
+    — Suspense(был в реакте 16 уже) — позволяет показывать fallback, пока дочерняя часть дерева приостановлена, например при загрузке lazy-компонента или данных через Suspense-совместимый источник. React 18: Suspense стал частью concurrent rendering и получил полноценную интеграцию с серверным streaming SSR и Suspense-совместимыми data-фреймворками.
     React 19
     — Metadata — <title>, <meta> и <link> можно рендерить внутри компонентов, а React автоматически разместит соответствующие элементы в <head>.
     — ref как prop — функциональный компонент теперь может получать ref как обычный prop, поэтому forwardRef для новых function components больше не требуется.

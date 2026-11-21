@@ -276,3 +276,36 @@ Object.defineProperty(Array.prototype, 'numberOfOccurrences', {
     return result;
   },
 });
+
+function largest(n) {
+  if (!Number.isInteger(n)) {
+    return false;
+  }
+
+  const createNumber = 10 ** n - 1;
+  const minNumber = 10 ** (n - 1);
+
+  for (let i = createNumber; i >= minNumber; i--) {
+    if (isPrime(i)) {
+      return i;
+    }
+  }
+
+  return false;
+}
+
+function isPrime(num) {
+  if (num < 2) {
+    return false;
+  }
+
+  for (let i = 2; i * i <= num; i++) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+console.log(largest(2));
